@@ -60,3 +60,32 @@ async function cadastrarFilmes() {
         }, 2000)
     }
 }
+async function cadastrarUsuario() {
+    // posicionar nas caixinhas de input
+    let usuarioCadastroInput = document.querySelector("#usuarioCadastroInput")
+    let passwordCadastroInput = document.querySelector("#passwordCadastroInput")
+    // captura os valores digitados
+    let usuarioCadastro = usuarioCadastroInput.value
+    let passwordCadastro = passwordCadastroInput.value
+        // validar se o usuário digitou coisas, 
+    if (usuarioCadastro && passwordCadastro) {
+        //se digitou ele vai fazer uma requisião no banco
+        try{
+        const cadastroEndpoint = '/signup'
+        const URLcompleta = `${protocolo}${baseURL}${cadastroEndpoint}`   
+        }
+        catch (erro) {
+
+        }
+    }
+    else {  
+     let alert = document.querySelector('.alert-modal-cadastro')
+     alert.innerHTML = "Preencha todos os campos"
+     alert.classList.add('show', 'alert-danger')
+     alert.classList.remove('d-none')
+     setTimeout(() => {
+        alert.classList.add('d-none')
+        alert.classList.remove('show', 'alert-danger')
+     }, 2000)
+    }
+}   
