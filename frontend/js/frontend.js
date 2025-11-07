@@ -67,25 +67,47 @@ async function cadastrarUsuario() {
     // captura os valores digitados
     let usuarioCadastro = usuarioCadastroInput.value
     let passwordCadastro = passwordCadastroInput.value
-        // validar se o usuário digitou coisas, 
+    // validar se o usuário digitou coisas, 
     if (usuarioCadastro && passwordCadastro) {
         //se digitou ele vai fazer uma requisião no banco
-        try{
-        const cadastroEndpoint = '/signup'
-        const URLcompleta = `${protocolo}${baseURL}${cadastroEndpoint}`   
+        try {
+            const cadastroEndpoint = '/signup'
+            const URLcompleta = `${protocolo}${baseURL}${cadastroEndpoint}`
+            await axio.post (URLcompleta, {login: usuarioCadastro, password: passwordCadastro})
+            usuarioCadastroInput.value = ""
+            passwordCadastroInput.value = ""
+            let alert = document.querySelector('.alert-modal-cadastro')
+            alert.innerHTML = "Usuário cadastrado com sucesso!!!"
+            alert.classList.add('show', 'alert-danger')
+            alert.classList.remove('d-none')
+            setTimeout(() => {
+                alert.classList.add('d-none')
+                alert.classList.remove('show', 'alert-success')
+                modalCadastro = bootstrap.Modal.getInstance(document.querySelector('#modalCadastro'))
+                modalCadastro.hide()
+            }, 2000)
         }
         catch (erro) {
-
+            let alert = document.querySelector('.alert-modal-cadastro')
+            alert.innerHTML = "Não foi possível cadastrar usuário!!!"
+            alert.classList.add('show', 'alert-danger')
+            alert.classList.remove('d-none')
+            setTimeout(() => {
+                alert.classList.add('d-none')
+                alert.classList.remove('show', 'alert-danger')
+                modalCadastro = bootstrap.Modal.getInstance(document.querySelector('#modalCadastro'))
+                modalCadastro.hide()
+            }, 2000)
         }
     }
-    else {  
-     let alert = document.querySelector('.alert-modal-cadastro')
-     alert.innerHTML = "Preencha todos os campos"
-     alert.classList.add('show', 'alert-danger')
-     alert.classList.remove('d-none')
-     setTimeout(() => {
-        alert.classList.add('d-none')
-        alert.classList.remove('show', 'alert-danger')
-     }, 2000)
+    else {
+        let alert = document.querySelector('.alert-modal-cadastro')
+        alert.innerHTML = "Preencha todos os campos"
+        alert.classList.add('show', 'alert-danger')
+        alert.classList.remove('d-none')
+        setTimeout(() => {
+            alert.classList.add('d-none')
+            alert.classList.remove('show', 'alert-danger')
+        }, 2000)
     }
 }   
