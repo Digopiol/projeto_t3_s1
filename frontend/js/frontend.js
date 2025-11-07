@@ -1,9 +1,10 @@
 // aqui
 const protocolo = "http://";
 const baseURL = "localhost:3000";
-const filmesEndPoint = "/filmes";
+
 
 async function obtemfilme() {
+    const filmesEndPoint = "/filmes";
     const URLcompleta = `${protocolo}${baseURL}${filmesEndPoint}`;
     const filmes = (await axios.get(URLcompleta)).data;
     // console.log(filmes)
@@ -20,6 +21,7 @@ async function obtemfilme() {
     }
 };
 async function cadastrarFilmes() {
+    const filmesEndPoint = "/filmes";
     // montamos a URL completa
     const URLcompleta = `${protocolo}${baseURL}${filmesEndPoint}`
     // pega os inputs
@@ -49,7 +51,7 @@ async function cadastrarFilmes() {
     }
     else {
         // exibir o llerta por até 2 segundos
-        let alert = document.querySelector('.alert')
+        let alert = document.querySelector('.alert-filme')
         alert.classList.add('show')
         alert.classList.remove('d-none')
         setTimeout(() => {
